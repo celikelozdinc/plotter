@@ -135,7 +135,7 @@ def main():
     """
 
 
-    
+    # %%
     _4800Event_4Replicas = Storage(); _4800Event_4Replicas._populate_data(u'our_solution/4800_4.csv',u'base_solution/4800_4.csv'); _4800Event_4Replicas._calculate_statistics()
     _4800Event_8Replicas = Storage(); _4800Event_8Replicas._populate_data(u'our_solution/4800_8.csv',u'base_solution/4800_8.csv'); _4800Event_8Replicas._calculate_statistics()
     _4800Event_12Replicas = Storage(); _4800Event_12Replicas._populate_data(u'our_solution/4800_12.csv',u'base_solution/4800_12.csv'); _4800Event_12Replicas._calculate_statistics()
