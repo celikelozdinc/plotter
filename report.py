@@ -144,9 +144,9 @@ def main():
     generate_plot_for_memory_footprint(_4800Event_4Replicas, _4800Event_8Replicas, _4800Event_12Replicas, _4800Event_16Replicas)
     """
 
-    _2400Event_4Replicas = Storage(); _2400Event_4Replicas._populate_data('2400_4_Without_ZK.csv',u'2400_4_With_ZK.csv'); _2400Event_4Replicas._calculate_statistics()
-    _2400Event_8Replicas = Storage(); _2400Event_8Replicas._populate_data('2400_8_Without_ZK.csv',u'2400_8_With_ZK.csv'); _2400Event_8Replicas._calculate_statistics()
-    _2400Event_12Replicas = Storage(); _2400Event_12Replicas._populate_data('2400_12_Without_ZK.csv',u'2400_12_With_ZK.csv'); _2400Event_12Replicas._calculate_statistics()
+    _2400Event_4Replicas = Storage(); _2400Event_4Replicas._populate_data(u'our_solution/2400_4_Without_ZK.csv',u'base_solution/2400_4.csv'); _2400Event_4Replicas._calculate_statistics()
+    _2400Event_8Replicas = Storage(); _2400Event_8Replicas._populate_data(u'our_solution/2400_8_Without_ZK.csv',u'base_solution/2400_8.csv'); _2400Event_8Replicas._calculate_statistics()
+    _2400Event_12Replicas = Storage(); _2400Event_12Replicas._populate_data(u'our_solution/2400_12_Without_ZK.csv',u'base_solution/2400_12.csv'); _2400Event_12Replicas._calculate_statistics()
     #_2400Event_16Replicas = Storage(); _2400Event_16Replicas._populate_data('2400_16_Without_ZK.csv',u'2400_16_With_ZK.csv'); _2400Event_16Replicas._calculate_statistics()
     #generate_plot_for_duration(_2400Event_4Replicas, _2400Event_8Replicas, _2400Event_12Replicas,"")
     generate_plot_for_memory_footprint(_2400Event_4Replicas, _2400Event_8Replicas, _2400Event_12Replicas,"")
