@@ -5,16 +5,25 @@ import numpy as np
 from entity.ExperimentCluster import ExperimentCluster
 
 def main():
-    df = pd.read_csv(u'../data/100Msg.csv')
+    df = pd.read_csv(u'data/300Msg.csv')
 
-    _4ReplicaSet_100Events_OurSoln = ExperimentCluster(replicas=4,events=100,dataframe=df[ (df[u'ReplicaSet'] == 4) & (df[u'Solution'] == u'our') ])
-    _4ReplicaSet_100Events_BaseSoln = ExperimentCluster(replicas=4,events=100,dataframe=df[ (df[u'ReplicaSet'] == 4) & (df[u'Solution'] == u'base') ])
+    _4ReplicaSet_300Events_OurSoln = ExperimentCluster(replicas=4,events=300,dataframe=df[ (df[u'ReplicaSet'] == 4) & (df[u'Solution'] == u'our') ])
+    _4ReplicaSet_300Events_BaseSoln = ExperimentCluster(replicas=4,events=300,dataframe=df[ (df[u'ReplicaSet'] == 4) & (df[u'Solution'] == u'base') ])
 
-    green_bar = (_4ReplicaSet_100Events_BaseSoln._mean_restore_duration)
-    blue_bar = (_4ReplicaSet_100Events_OurSoln._mean_restore_duration)
+    base_memoryfootprint = _4ReplicaSet_300Events_BaseSoln._all_memory_footprint.values
+    our_memoryfootprint = _4ReplicaSet_300Events_OurSoln._all_memory_footprint.values
+    sub = base_memoryfootprint - our_memoryfootprint
+    print("-----")
+    print(sub.mean())
+    print(sub.std())
+    print("-----")
 
-    green_std = (_4ReplicaSet_100Events_BaseSoln._std_restore_duration)
-    blue_std = (_4ReplicaSet_100Events_OurSoln._std_restore_duration)
+
+    green_bar = (_4ReplicaSet_300Events_BaseSoln._mean_restore_duration)
+    blue_bar = (_4ReplicaSet_300Events_OurSoln._mean_restore_duration)
+
+    green_std = (_4ReplicaSet_300Events_BaseSoln._std_restore_duration)
+    blue_std = (_4ReplicaSet_300Events_OurSoln._std_restore_duration)
 
     # the x locations for the groups
     ind = np.arange(4)
