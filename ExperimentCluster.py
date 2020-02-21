@@ -14,9 +14,6 @@ class ExperimentCluster:
         # store whole experiments performed for the replica #
         for exp in range(0,self._number_of_experiments):
             df = self._dataframe[ (self._dataframe[u'Experiment'] == (exp+1) ) ]
-            print("-----{}-----".format(exp+1))
-            print(df["RestoreDurationInSec"])
-            print("-----{}-----".format(exp+1))
             experiment = Experiment(experiment_id=exp, dataframe=df)
             # Read all memory footprint dataframe #
             self._all_memory_footprint = pd.concat([self._all_memory_footprint,experiment._memoryFootprint_dataframe],ignore_index=True)
