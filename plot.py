@@ -39,12 +39,14 @@ def main():
     _4ReplicaSet_3000Events_DistributedSoln = ExperimentCluster(replicas=4,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 4) & (df_3000["Solution"] == "distributed") ])
     _4ReplicaSet_3000Events_CentralizedSoln = ExperimentCluster(replicas=4,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 4) & (df_3000["Solution"] == "centralized") ])
 
-    _8ReplicaSet_3000Events_DistributedSoln = ExperimentCluster(replicas=8,events=900,dataframe=df_3000[ (df_3000["ReplicaSet"] == 8) & (df_3000["Solution"] == "distributed") ])
-    _8ReplicaSet_3000Events_CentralizedSoln = ExperimentCluster(replicas=8,events=900,dataframe=df_3000[ (df_3000["ReplicaSet"] == 8) & (df_3000["Solution"] == "centralized") ]) 
+    _8ReplicaSet_3000Events_DistributedSoln = ExperimentCluster(replicas=8,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 8) & (df_3000["Solution"] == "distributed") ])
+    _8ReplicaSet_3000Events_CentralizedSoln = ExperimentCluster(replicas=8,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 8) & (df_3000["Solution"] == "centralized") ]) 
 
+    _12ReplicaSet_3000Events_DistributedSoln = ExperimentCluster(replicas=12,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 12) & (df_3000["Solution"] == "distributed") ])
+    _12ReplicaSet_3000Events_CentralizedSoln = ExperimentCluster(replicas=12,events=3000,dataframe=df_3000[ (df_3000["ReplicaSet"] == 12) & (df_3000["Solution"] == "centralized") ])
 
     # the x locations for the groups
-    ind = np.arange(2)
+    ind = np.arange(3)
 
     # the width of the bars
     width = 0.35
@@ -62,35 +64,36 @@ def main():
     sub_2 = np.absolute(base_memoryfootprint_2 - our_memoryfootprint_2)
 
 
-    #base_memoryfootprint_3 = _12ReplicaSet_900Events_BaseSoln._all_memory_footprint.values
-    #our_memoryfootprint_3 = _12ReplicaSet_900Events_OurSoln._all_memory_footprint.values
+    base_memoryfootprint_3 = _12ReplicaSet_3000Events_DistributedSoln._all_memory_footprint.values
+    our_memoryfootprint_3 = _12ReplicaSet_3000Events_CentralizedSoln._all_memory_footprint.values
     #sub_3 = base_memoryfootprint_3 - our_memoryfootprint_3
-    #sub_3 = np.absolute(base_memoryfootprint_3 - our_memoryfootprint_3)
+    sub_3 = np.absolute(base_memoryfootprint_3 - our_memoryfootprint_3)
 
 
 
-        
-    green_bar = (sub_1.mean(),sub_2.mean())
-    green_std = (sub_1.std(),sub_2.std())
+    """
+    green_bar = (sub_1.mean(),sub_2.mean(),sub_3.mean())
+    green_std = (sub_1.std(),sub_2.std(),sub_2.std())
 
 
     plt.bar(ind, green_bar , width, label='Memory Consumption Difference',color='0.80',yerr=green_std,align='center', ecolor='red', capsize=10)
     plt.ylabel('Memory Footprint Delta(KB)', fontsize=20)
     plt.xlabel('Number of replicas', fontsize=20)
     #plt.title('Number of replicas vs Memory Footprint Delta',fontsize=20)
-    plt.xticks(ind + width / 10, ('#replicas=4', '#replicas=8', '#replicas=12', '#replicas=16'),fontsize=20)
+    plt.xticks(ind + width / 10, ('#replicas=4', '#replicas=8', '#replicas=12'),fontsize=20)
     plt.legend(loc='best',fontsize=20)
-    plt.show() 
-    
-    
-    
-
+    plt.show()
     """
-    green_bar = (_4ReplicaSet_3000Events_DistributedSoln._mean_restore_duration,_8ReplicaSet_3000Events_DistributedSoln._mean_restore_duration)
-    blue_bar = (_4ReplicaSet_3000Events_CentralizedSoln._mean_restore_duration, _8ReplicaSet_3000Events_CentralizedSoln._mean_restore_duration)
+    
+    
+    
 
-    green_std = (_4ReplicaSet_3000Events_DistributedSoln._std_restore_duration,_8ReplicaSet_3000Events_DistributedSoln._std_restore_duration)
-    blue_std = (_4ReplicaSet_3000Events_DistributedSoln._std_restore_duration,_8ReplicaSet_3000Events_DistributedSoln._std_restore_duration)
+    
+    green_bar = (_4ReplicaSet_3000Events_DistributedSoln._mean_restore_duration,_8ReplicaSet_3000Events_DistributedSoln._mean_restore_duration,_12ReplicaSet_3000Events_DistributedSoln._mean_restore_duration)
+    blue_bar = (_4ReplicaSet_3000Events_CentralizedSoln._mean_restore_duration, _8ReplicaSet_3000Events_CentralizedSoln._mean_restore_duration, _12ReplicaSet_3000Events_CentralizedSoln._mean_restore_duration)
+
+    green_std = (_4ReplicaSet_3000Events_DistributedSoln._std_restore_duration,_8ReplicaSet_3000Events_DistributedSoln._std_restore_duration,_12ReplicaSet_3000Events_DistributedSoln._std_restore_duration)
+    blue_std = (_4ReplicaSet_3000Events_CentralizedSoln._std_restore_duration,_8ReplicaSet_3000Events_CentralizedSoln._std_restore_duration,_12ReplicaSet_3000Events_CentralizedSoln._std_restore_duration)
 
     plt.bar(ind, green_bar , width, label='Distributed Checkpointing',color='0.20',yerr=green_std,align='center', ecolor='red', capsize=10)
     plt.bar(ind + width, blue_bar, width, label='Centralized Checkpointing',color='0.80',yerr=blue_std,align='center', ecolor='red', capsize=10)
@@ -100,7 +103,7 @@ def main():
     plt.xticks(ind + width / 2, ('#replicas=4', '#replicas=8', '#replicas=12', '#replicas=16'),fontsize=20)
     plt.legend(loc='best',fontsize=20)
     plt.show()
-    """
+    
     
     
 
