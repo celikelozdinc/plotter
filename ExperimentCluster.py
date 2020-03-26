@@ -9,7 +9,7 @@ class ExperimentCluster:
         self._dataframe = kwargs.get("dataframe")
         self._experiments = []; self._number_of_experiments = 10
         self._all_memory_footprint = pd.DataFrame()
-        #self._mean_memory_footprint = 0 ; self._std_memory_footprint = 0 
+        self._mean_memory_footprint = 0 ; self._std_memory_footprint = 0 
         self._restore_durations = [] ; self._mean_restore_duration = 0 ; self._std_restore_duration = 0
 
         # store whole experiments performed for the replica #
@@ -30,8 +30,8 @@ class ExperimentCluster:
         # Calculate statistics for experiments #
         
         # Mean of memory footprint
-        #self._mean_memory_footprint = self._all_memory_footprint.mean().values[0]
-        #self._std_memory_footprint = self._all_memory_footprint.std().values[0]
+        self._mean_memory_footprint = self._all_memory_footprint.mean().values[0]
+        self._std_memory_footprint = self._all_memory_footprint.std().values[0]
         
         # Mean of restore duration
         self._mean_restore_duration = self._all_durations_of_new_smocs.mean().values[0]
