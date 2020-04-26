@@ -9,7 +9,7 @@ class Experiment:
         self._duration_of_new_smoc = self._duration_dataframe.tail(1).values[0]
 
         # Calculate memory footprint inside the replica # 
-        self._memoryFootprint_dataframe = self._experiment_dataframe["VmData"]
+        self._memoryFootprint_dataframe = self._experiment_dataframe["VmRSS"]
         # Drop last row which stores memory footprint of new smoc
         self._memoryFootprint_dataframe = self._memoryFootprint_dataframe[:-1]
         self._memoryFootprint_of_replica = self._memoryFootprint_dataframe.sum()
